@@ -1,1 +1,29 @@
-// TODO
+.info {
+  display: flex;
+  margin-top: 1.5rem;
+  color: var(--gray-150);
+  font-size: .875rem;
+
+  .textAndIcon {
+    margin: 0;
+    align-items: center;
+
+    svg {
+      margin-right: .65625rem;
+    }
+
+    & + div {
+      margin-left: 1.5rem;
+    }
+  }
+}
+
+.mini_container {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+}
