@@ -11,6 +11,7 @@ import styles from './home.module.scss';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { useState } from 'react';
+import PreviewButton from '../components/PreviewButton';
 
 interface Post {
   uid?: string;
@@ -29,9 +30,10 @@ interface PostPagination {
 
 interface HomeProps {
   postsPagination: PostPagination;
+  preview: boolean;
 }
 
-export default function Home({ postsPagination }: HomeProps) {
+export default function Home({ postsPagination, preview }: HomeProps) {
   const [posts, setPosts] = useState(postsPagination.results);
   const [nextPage, setNextPage] = useState(postsPagination.next_page);
 
@@ -70,26 +72,33 @@ export default function Home({ postsPagination }: HomeProps) {
             </Link>
           )) }
 
-          { nextPage && (<button onClick={getMorePosts}>Carregar mais posts</button>) }
+          { nextPage && <button onClick={getMorePosts}>Carregar mais posts</button> }
+          { preview && <PreviewButton/> }
         </div>
       </div>
     </>
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps<HomeProps> = async ({
+  preview = false,
+  previewData
+}) => {
   const prismic = getPrismicClient();
   const postsResponse = await prismic.query([
     Prismic.predicates.at('document.type', 'posts')
   ], {
-    pageSize: 1
+    fetch: ['post.title', 'post.subtitle', 'post.author'],
+    pageSize: 20,
+    ref: previewData?.ref ?? null,
   });
 
   const postsPagination = postsResponse;
 
   return {
     props: {
-      postsPagination
+      postsPagination,
+      preview
     }
   }
 };

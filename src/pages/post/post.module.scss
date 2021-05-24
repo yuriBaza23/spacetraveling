@@ -16,7 +16,7 @@
   }
 
   .content {
-    margin-top: 4rem;
+    margin-bottom: 4rem;
 
     h2 {
       margin-bottom: 4rem;
@@ -35,4 +35,51 @@
       }
     }
   }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    border: none;
+    border-bottom: 1px solid var(--gray-100);
+    opacity: .1;
+    margin-bottom: 3rem;
+  }
+}
+
+.neighbors {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5rem;
+
+  div {
+    display: flex;
+    flex-direction: column;
+
+    span {
+      font-size: 1.125rem;
+      letter-spacing: -0.03125rem;
+      line-height: 1.36rem;
+      margin-bottom: .5rem;
+    }
+
+    strong {
+      cursor: pointer;
+      color: var(--pink);
+      transition: all .2s;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.previousPost {
+  margin-right: auto;
+  text-align: left;
+}
+
+.nextPost {
+  margin-left: auto;
+  text-align: right;
 }

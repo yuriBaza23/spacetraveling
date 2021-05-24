@@ -1,0 +1,26 @@
+.button {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 3.625rem;
+  background: var(--white);
+
+  a {
+    text-decoration: none;
+    color: var(--black-800);
+    font-weight: 600;
+    line-height: 1.375rem;
+    border-radius: 4px;
+    transition: filter .2s;
+    width: fit-content;
+
+    &:hover {
+      text-decoration: underline;
+      filter: brightness(.9);
+    }
+
+  }
+}
